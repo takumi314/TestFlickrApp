@@ -6,4 +6,5 @@
 //  Copyright © 2016年 Kohey. All rights reserved.
 //
 
-import Foundation
+import SystemConfiguration
+
