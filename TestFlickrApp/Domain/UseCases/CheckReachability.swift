@@ -25,11 +25,11 @@ class CheckReachability {
     }
     
     private func isReachable(flags: SCNetworkReachabilityFlags) -> Bool {
-        return (flags.rawValue & UInt32(kSCNetworkFlagsReachable)) != 0
+        return flags.rawValue & UInt32(kSCNetworkFlagsReachable) != 0
     }
 
     private func needsConnection(flags: SCNetworkReachabilityFlags) -> Bool {
-        return (flags.rawValue & UInt32(kSCNetworkFlagsConnectionRequired)) != 0
+        return flags.rawValue & UInt32(kSCNetworkFlagsConnectionRequired) != 0
     }
     
 }
