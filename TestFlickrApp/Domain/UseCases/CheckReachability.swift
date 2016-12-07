@@ -10,7 +10,8 @@ import SystemConfiguration
 
 class CheckReachability {
     
-    // MARK: - デバイスがオンラインかどうかを判定する
+    // MARK: - デバイスがオンラインかどうかを判定する。
+    // ネットワークへの接続が確立できない場合にはfalseを返す。
     func checkReachability(hostName: String) -> Bool {
 
         let reachability = SCNetworkReachabilityCreateWithName(nil, hostName)!
