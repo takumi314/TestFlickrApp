@@ -12,19 +12,24 @@ class CheckReachability {
     
     // MARK: - デバイスがオンラインかどうかを判定する
     func checkReachability(hostName: String) -> Bool {
-        
+
         let reachability = SCNetworkReachabilityCreateWithName(nil, hostName)!
         var flags = SCNetworkReachabilityFlags.ConnectionAutomatic
-        
+
         //Determines if the given target is reachable using the current network configuration.
         guard SCNetworkReachabilityGetFlags(reachability, &flags) else {
             return false
         }
-        
-        let isReachable = (flags.rawValue & UInt32(kSCNetworkFlagsReachable)) != 0
-        let needsConnection = (flags.rawValue & UInt32(kSCNetworkFlagsConnectionRequired)) != 0
-        
-        return (isReachable && !needsConnection)
+
+        return isReachable(flags) && !needsConnection(flags)
+    }
+    
+    private func isReachable(flags: SCNetworkReachabilityFlags) -> Bool {
+        return (flags.rawValue & UInt32(kSCNetworkFlagsReachable)) != 0
+    }
+
+    private func needsConnection(flags: SCNetworkReachabilityFlags) -> Bool {
+        return (flags.rawValue & UInt32(kSCNetworkFlagsConnectionRequired)) != 0
     }
     
 }
