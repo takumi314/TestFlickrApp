@@ -19,6 +19,7 @@
 		E14828231DF7062800DD94D1 /* TestFlickrAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14828221DF7062800DD94D1 /* TestFlickrAppUITests.swift */; };
 		E148283E1DF8274600DD94D1 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E148283D1DF8274600DD94D1 /* SystemConfiguration.framework */; };
 		E14828471DFB6DB000DD94D1 /* HTTPNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14828461DFB6DB000DD94D1 /* HTTPNetworking.swift */; };
+		E1D3AB301E004DC2008A46B3 /* XMLParseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D3AB2F1E004DC2008A46B3 /* XMLParseManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,7 @@
 		E14828241DF7062800DD94D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E148283D1DF8274600DD94D1 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		E14828461DFB6DB000DD94D1 /* HTTPNetworking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPNetworking.swift; sourceTree = "<group>"; };
+		E1D3AB2F1E004DC2008A46B3 /* XMLParseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XMLParseManager.swift; path = Infra/XMLParseManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -252,6 +254,7 @@
 				E148283F1DF8281A00DD94D1 /* Memories */,
 				E14828421DF8284300DD94D1 /* Apis */,
 				E14828461DFB6DB000DD94D1 /* HTTPNetworking.swift */,
+				E1D3AB2F1E004DC2008A46B3 /* XMLParseManager.swift */,
 			);
 			name = Repositries;
 			sourceTree = "<group>";
@@ -550,6 +553,7 @@
 				E14828051DF7062800DD94D1 /* ViewController.swift in Sources */,
 				E14828031DF7062800DD94D1 /* AppDelegate.swift in Sources */,
 				E14828471DFB6DB000DD94D1 /* HTTPNetworking.swift in Sources */,
+				E1D3AB301E004DC2008A46B3 /* XMLParseManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
