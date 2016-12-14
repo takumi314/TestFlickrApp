@@ -15,11 +15,12 @@ class PhotoViewController: UIViewController {
     let sectionInsets = UIEdgeInsets(top: 50.0, left: 20.0, bottom: 50.0, right: 20.0)
     let itemsPerRow: CGFloat = 5
     
+    var photosView: PhotosView?
     private var searches = [Photo]()
-//    private let flickr = Flickr()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        photosView?.delegate = self
     }
     
     override func didReceiveMemoryWarning() {
@@ -39,6 +40,7 @@ class PhotoViewController: UIViewController {
 
 
 // MARK: - UICollectionViewDataSource
+
 extension PhotoViewController: UICollectionViewDataSource {
     
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
@@ -50,7 +52,8 @@ extension PhotoViewController: UICollectionViewDataSource {
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: cellForItemAtIndexPath) as? FlickrPhotoCell
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier,
+                                                                         forIndexPath: cellForItemAtIndexPath) as? FlickrPhotoCell
         cell?.backgroundColor = UIColor.blackColor()
         
         // Configure the cell
@@ -58,13 +61,6 @@ extension PhotoViewController: UICollectionViewDataSource {
     }
     
 }
-
-
-// MARK: - UICollectionViewDelegate
-//extension PhotoCollectionViewController: UICollectionViewDelegate {
-//    
-//}
-
 
 extension PhotoViewController : UICollectionViewDelegateFlowLayout {
     
@@ -91,6 +87,15 @@ extension PhotoViewController : UICollectionViewDelegateFlowLayout {
         return sectionInsets.left
     }
 
+}
+
+extension PhotoViewController: PhotosViewDelegate {
+    
+    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        // 検索ボタン クリック後の処理
+        // HTTPNetworking.requestAPI(searchBar.text!)
+    }
+    
 }
 
 

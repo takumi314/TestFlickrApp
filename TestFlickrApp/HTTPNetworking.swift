@@ -20,11 +20,11 @@ struct FlickrArguments {
 
 class HTTPNetworking: AnyObject {
     
-    internal class func requestAPI() {
+    internal class func requestAPI(input: String) {
         let flickr = FlickrArguments()
         let parameters = organizeWithArguments("flickr.photos.search",
                                                key: "10ba93bbe49a6480d765ce486673954a",
-                                               text: "日本",
+                                               text: input,
                                                perPage: "50",
                                                page: "2")
         startGETAccess(flickr.endpoint, parameters: parameters)
