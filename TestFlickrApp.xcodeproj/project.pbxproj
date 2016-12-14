@@ -20,7 +20,8 @@
 		E148283E1DF8274600DD94D1 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E148283D1DF8274600DD94D1 /* SystemConfiguration.framework */; };
 		E14828471DFB6DB000DD94D1 /* HTTPNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14828461DFB6DB000DD94D1 /* HTTPNetworking.swift */; };
 		E1D3AB301E004DC2008A46B3 /* XMLParseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D3AB2F1E004DC2008A46B3 /* XMLParseManager.swift */; };
-		E1D3AB321E018D30008A46B3 /* PhotoCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D3AB311E018D30008A46B3 /* PhotoCollectionViewController.swift */; };
+		E1D3AB321E018D30008A46B3 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D3AB311E018D30008A46B3 /* PhotoViewController.swift */; };
+		E1D3AB341E019D90008A46B3 /* FlickrPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D3AB331E019D90008A46B3 /* FlickrPhotoCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,7 +67,8 @@
 		E148283D1DF8274600DD94D1 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		E14828461DFB6DB000DD94D1 /* HTTPNetworking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPNetworking.swift; sourceTree = "<group>"; };
 		E1D3AB2F1E004DC2008A46B3 /* XMLParseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XMLParseManager.swift; path = Infra/XMLParseManager.swift; sourceTree = "<group>"; };
-		E1D3AB311E018D30008A46B3 /* PhotoCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PhotoCollectionViewController.swift; path = Presentation/PhotoCollectionViewController.swift; sourceTree = "<group>"; };
+		E1D3AB311E018D30008A46B3 /* PhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PhotoViewController.swift; path = Presentation/PhotoViewController.swift; sourceTree = "<group>"; };
+		E1D3AB331E019D90008A46B3 /* FlickrPhotoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FlickrPhotoCell.swift; path = Presentation/FlickrPhotoCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -180,6 +182,7 @@
 			isa = PBXGroup;
 			children = (
 				E14828061DF7062800DD94D1 /* Main.storyboard */,
+				E1D3AB331E019D90008A46B3 /* FlickrPhotoCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -236,7 +239,7 @@
 				E14828301DF709BD00DD94D1 /* Views */,
 				E14828311DF709C600DD94D1 /* Presenters */,
 				E14828041DF7062800DD94D1 /* ViewController.swift */,
-				E1D3AB311E018D30008A46B3 /* PhotoCollectionViewController.swift */,
+				E1D3AB311E018D30008A46B3 /* PhotoViewController.swift */,
 			);
 			name = Presentation;
 			sourceTree = "<group>";
@@ -553,11 +556,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E1D3AB321E018D30008A46B3 /* PhotoCollectionViewController.swift in Sources */,
+				E1D3AB321E018D30008A46B3 /* PhotoViewController.swift in Sources */,
 				E14828051DF7062800DD94D1 /* ViewController.swift in Sources */,
 				E14828031DF7062800DD94D1 /* AppDelegate.swift in Sources */,
 				E14828471DFB6DB000DD94D1 /* HTTPNetworking.swift in Sources */,
 				E1D3AB301E004DC2008A46B3 /* XMLParseManager.swift in Sources */,
+				E1D3AB341E019D90008A46B3 /* FlickrPhotoCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
