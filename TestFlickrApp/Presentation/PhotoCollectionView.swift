@@ -8,30 +8,8 @@
 
 import UIKit
 
-protocol PhotosViewDelegate: UISearchBarDelegate {
-    func searchBarSearchButtonClicked(searchBar: UISearchBar)
-}
-
-
-class PhotosView: UIView {
-
-    @IBOutlet weak var flickrSearchBar: UISearchBar?
+class PhotoCollectionView: UICollectionView {
     
-    let seaechIcon: UISearchBarIcon = .Clear
-    let keyword: String = "キーワード検索"
-    static let input: String = ""
+    var flickrCell: FlickrPhotoCell?
     
-    var delegate: PhotosViewDelegate?
-    
-}
-
-
-
-
-extension PhotosView: UISearchBarDelegate {
-
-    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
-        HTTPNetworking.requestAPI((flickrSearchBar!.text)!)
-    }
-
 }

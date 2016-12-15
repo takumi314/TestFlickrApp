@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="bhg-OQ-UAd">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="bhg-OQ-UAd" customClass="PhotoCollectionView" customModule="TestFlickrApp">
                                 <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="L6u-Su-g2f">
                                     <size key="itemSize" width="113" height="104"/>
@@ -77,6 +77,7 @@
                         </constraints>
                         <connections>
                             <outlet property="flickrSearchBar" destination="vUJ-vc-Ukd" id="sE4-LL-Cgn"/>
+                            <outlet property="photoCollectionView" destination="bhg-OQ-UAd" id="cnX-ri-CdI"/>
                         </connections>
                     </view>
                 </viewController>

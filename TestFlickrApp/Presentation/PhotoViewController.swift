@@ -8,6 +8,13 @@
 
 import UIKit
 
+protocol PhotoViewControllerDelegate {
+    
+    func searchingForText(text: String)    //
+    
+}
+
+
 class PhotoViewController: UIViewController {
     
     // MARK: - Properties
@@ -16,11 +23,16 @@ class PhotoViewController: UIViewController {
     let itemsPerRow: CGFloat = 5
     
     var photosView: PhotosView?
+    var delegate: PhotoViewControllerDelegate?
+    var dataSource: UICollectionViewDataSource?
+
+    
     private var searches = [Photo]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         photosView?.delegate = self
+        self.dataSource = self
     }
     
     override func didReceiveMemoryWarning() {
@@ -28,15 +40,6 @@ class PhotoViewController: UIViewController {
     }
     
 }
-
-
-//extension PhotoViewController {
-//    
-//    func photoForIndexPath(indexPath: IndexPath) -> FlickrPhoto {
-//        return searches[(indexPath as NSIndexPath).section].searchResults[(indexPath as NSIndexPath).row]
-//    }
-//    
-//}
 
 
 // MARK: - UICollectionViewDataSource
@@ -92,8 +95,10 @@ extension PhotoViewController : UICollectionViewDelegateFlowLayout {
 extension PhotoViewController: PhotosViewDelegate {
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        photosView?.start()
         // 検索ボタン クリック後の処理
-        // HTTPNetworking.requestAPI(searchBar.text!)
+        HTTPNetworking.requestAPI(searchBar.text!)
+//        self.dataSource = self
     }
     
 }
