@@ -59,6 +59,25 @@ extension PhotoViewController: UICollectionViewDataSource {
                                                                          forIndexPath: cellForItemAtIndexPath) as? FlickrPhotoCell
         cell?.backgroundColor = UIColor.blackColor()
         
+        let url = NSURL(string:"http://画像のURL")
+        let req = NSURLRequest(URL:url)
+
+        NSURLConnection.sendAsynchronousRequest(req, queue:NSOperationQueue.mainQueue()){(res, data, err) in
+            let image = UIImage(data:data)
+            cell.collectionView.FlickrPhotoCell = image
+        }
+        
+        /**
+            let mainQueue = dispatch_get_main_queue()
+            let grobalQueue = dispatch_get_global_queue(QOS_CLASS_USER_INTERACTIVE, 0)
+            dispatch_sync(mainQueue, {
+                print("同期") // 画像取得
+                            dispatch_async(grobalQueue, {
+                    print("非同期")   // 画像表示
+                })
+            })
+        */
+ 
         // Configure the cell
         return cell!
     }
