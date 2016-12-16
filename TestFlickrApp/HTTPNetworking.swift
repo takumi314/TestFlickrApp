@@ -20,17 +20,17 @@ struct FlickrArguments {
 
 class HTTPNetworking: AnyObject {
     
-    internal class func requestAPI(input: String) {
-        let flickr = FlickrArguments()
-        let parameters = organizeWithArguments("flickr.photos.search",
-                                               key: "10ba93bbe49a6480d765ce486673954a",
-                                               text: input,
-                                               perPage: "50",
-                                               page: "2")
-        startGETAccess(flickr.endpoint, parameters: parameters)
+    class func requestAPI(input: String) {
+//        let flickr = FlickrArguments()
+//        let parameters = organizeWithArguments("flickr.photos.search",
+//                                               key: "10ba93bbe49a6480d765ce486673954a",
+//                                               text: input,
+//                                               perPage: "50",
+//                                               page: "2")
+//        startGETAccess(flickr.endpoint, parameters: parameters)
     }
     
-    internal class func startGETAccess(url: String, parameters: [String: AnyObject]) {
+    class func startGETAccess(url: String, parameters: [String: AnyObject]) {
         let flickr = FlickrArguments()
         Alamofire.request(.GET, flickr.endpoint, parameters: parameters)
             .response { (request, response, data, error) in
@@ -42,7 +42,7 @@ class HTTPNetworking: AnyObject {
     }
     
     // flickr用のパラメーターを生成する
-    private class func organizeWithArguments(method: String, key: String, text: String, perPage: String, page: String) -> [String: String] {
+    func organizeWithArguments(method: String, key: String, text: String, perPage: String, page: String) -> [String: String] {
         let flickr = FlickrArguments()
         let arguments = [flickr.method: method,flickr.apiKey: key, flickr.text: text, flickr.perPage: perPage, flickr.numberOfPage: page]
         return arguments
