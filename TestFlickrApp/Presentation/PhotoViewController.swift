@@ -60,7 +60,7 @@ extension PhotoViewController: UICollectionViewDataSource {
         cell?.backgroundColor = UIColor.blackColor()
         
         let url = NSURL(string:"http://画像のURL")
-        let req = NSURLRequest(URL:url)
+        let req = NSURLRequest(URL:url!)
 
         NSURLConnection.sendAsynchronousRequest(req, queue:NSOperationQueue.mainQueue()){(res, data, err) in
             let image = UIImage(data:data)
