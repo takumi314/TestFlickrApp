@@ -20,6 +20,9 @@ class PhotoViewController: UIViewController {
     
     let flickr = Flickr()
     
+//    var searches = []()
+    let flickr = Flickr()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         photosView?.delegate = self
