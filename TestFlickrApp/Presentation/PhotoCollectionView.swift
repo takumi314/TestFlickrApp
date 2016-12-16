@@ -31,7 +31,6 @@ class PhotosView: UIView {
 extension PhotosView: UISearchBarDelegate {
 
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
-        HTTPNetworking.requestAPI((flickrSearchBar!.text)!)
     }
 
 }
