@@ -27,7 +27,7 @@ class PhotoViewController: UIViewController {
     var dataSource: UICollectionViewDataSource?
 
     
-    private var searches = [Photo]()
+    var searches = [Photo]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,7 +51,7 @@ extension PhotoViewController: UICollectionViewDataSource {
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 100
+        return searches.count
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath: NSIndexPath) -> UICollectionViewCell {
@@ -59,12 +59,18 @@ extension PhotoViewController: UICollectionViewDataSource {
                                                                          forIndexPath: cellForItemAtIndexPath) as? FlickrPhotoCell
         cell?.backgroundColor = UIColor.blackColor()
         
-        let url = NSURL(string:"http://画像のURL")
+        let urlString = HTTPNetworking.photoSource(searches[cellForItemAtIndexPath])
+        let url = NSURL(string: urlString)
         let req = NSURLRequest(URL:url!)
 
-        NSURLConnection.sendAsynchronousRequest(req, queue:NSOperationQueue.mainQueue()){(res, data, err) in
-            let image = UIImage(data:data)
-            cell.collectionView.FlickrPhotoCell = image
+        NSURLConnection.sendAsynchronousRequest(req, queue:NSOperationQueue.mainQueue()) { (res, data, err) in
+            if let image = UIImage(data:data!) {
+                print(image)
+//                cell.photosView!.photoCollectionView.flickrCell.photoImage = image
+            } else if let error = err {
+                print(error)
+            }
+            
         }
         
         /**

@@ -47,7 +47,7 @@
                                             <constraint firstAttribute="trailingMargin" secondItem="suy-p0-LBC" secondAttribute="trailing" constant="-8" id="wqZ-XB-BqO"/>
                                         </constraints>
                                         <connections>
-                                            <outlet property="photoImage" destination="suy-p0-LBC" id="QWG-5d-dTv"/>
+                                            <outlet property="photoImage" destination="suy-p0-LBC" id="Ff3-LM-Pyk"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
