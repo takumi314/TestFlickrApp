@@ -14,6 +14,7 @@ class Flickr: HTTPNetworking {
     // API結果保持用
     var result = [Page]()
     
+    // APIリクエスト
     func searchFlickrForTerm( input: String) -> Bool {
         
         let dir = FlickrArguments()
@@ -34,8 +35,8 @@ class Flickr: HTTPNetworking {
                     return
                 }
                 
-                if let data = data {
-                        self.result = XMLParseManager.parseXML(data)!
+                if let response = response {
+                        self.result = XMLParseManager.parseXML(response)!
                 }
                 
         }
