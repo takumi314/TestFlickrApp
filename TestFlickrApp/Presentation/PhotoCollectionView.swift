@@ -13,3 +13,13 @@ class PhotoCollectionView: UICollectionView {
     var flickrCell: FlickrPhotoCell?
     
 }
+
+
+
+
+extension PhotosView: UISearchBarDelegate {
+
+    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+    }
+
+}

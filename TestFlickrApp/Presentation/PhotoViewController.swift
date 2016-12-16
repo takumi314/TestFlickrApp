@@ -25,9 +25,10 @@ class PhotoViewController: UIViewController {
     var photosView: PhotosView?
     var delegate: PhotoViewControllerDelegate?
     var dataSource: UICollectionViewDataSource?
-
     
-    private var searches = [Photo]()
+    var searches = [Photo]()
+    
+    let flickr = Flickr()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -97,8 +98,31 @@ extension PhotoViewController: PhotosViewDelegate {
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         photosView?.start()
         // 検索ボタン クリック後の処理
-        HTTPNetworking.requestAPI(searchBar.text!)
-//        self.dataSource = self
+        let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
+        photosView!.addSubview(activityIndicator)
+        activityIndicator.frame = photosView!.bounds
+        activityIndicator.startAnimating()
+
+        
+        if flickr.searchFlickrForTerm(searchBar.text!) {
+            
+            // インジケータ停止
+            activityIndicator.removeFromSuperview()
+            
+            guard let pages = flickr.result as [Page]? else {
+                return
+            }
+            
+            for page in pages {
+                print(" page : \(page)")
+            }
+        
+            // レロード処理
+        
+        } else {
+            print("Fail to download")
+        }
+        
     }
     
 }
