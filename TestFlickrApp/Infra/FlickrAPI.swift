@@ -15,26 +15,30 @@ class Flickr: HTTPNetworking {
     var result = [Page]()
     
     func searchFlickrForTerm( input: String) -> Bool {
+        
         let dir = FlickrArguments()
-        Alamofire.request(.GET,
-                            dir.endpoint,
-                            parameters: ["method": "flickr.photos.search",
-                                            "key": "10ba93bbe49a6480d765ce486673954a",
-                                            "text": input,
-                                            "perpage": "50",
-                                            "page": "2"
-                ])
-            .response { (request, data, response, error) in
-                    print(request)
-                    print(response)
-                    if let error = error {
-                        print(error)
-                        return
-                    }
-                    if let data = data {
+        
+        Alamofire.request(
+            .GET,
+            dir.endpoint,
+            parameters: [
+                            "method": "flickr.photos.search",
+                               "key": "10ba93bbe49a6480d765ce486673954a",
+                              "text": input,
+                           "perpage": "50",
+                              "page": "2"
+            ]).response { (request, data, response, error) in
+                
+                if let error = error {
+                    print(error)
+                    return
+                }
+                
+                if let data = data {
                         self.result = XMLParseManager.parseXML(data)!
                 }
-            }
+                
+        }
         return true
     }
     

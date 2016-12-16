@@ -19,17 +19,7 @@ struct FlickrArguments {
 
 
 class HTTPNetworking: AnyObject {
-    
-    class func requestAPI(input: String) {
-//        let flickr = FlickrArguments()
-//        let parameters = organizeWithArguments("flickr.photos.search",
-//                                               key: "10ba93bbe49a6480d765ce486673954a",
-//                                               text: input,
-//                                               perPage: "50",
-//                                               page: "2")
-//        startGETAccess(flickr.endpoint, parameters: parameters)
-    }
-    
+
     class func startGETAccess(url: String, parameters: [String: AnyObject]) {
         let flickr = FlickrArguments()
         Alamofire.request(.GET, flickr.endpoint, parameters: parameters)
