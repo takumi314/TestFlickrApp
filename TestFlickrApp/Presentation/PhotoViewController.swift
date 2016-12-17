@@ -25,9 +25,8 @@ class PhotoViewController: UIViewController {
     
     @IBOutlet weak var photosView: PhotosView?
 
-    
-    var delegate: PhotoViewControllerDelegate?
     var dataSource: UICollectionViewDataSource?
+    var delegate: UICollectionViewDelegate?
     var searches = [Photo]()
     
     
@@ -35,6 +34,9 @@ class PhotoViewController: UIViewController {
         super.viewDidLoad()
         photosView?.delegate = self
         self.dataSource = self
+        self.delegate = self
+        photosView?.photoCollectionView?.backgroundColor = UIColor.whiteColor()
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -63,22 +65,22 @@ extension PhotoViewController: UICollectionViewDataSource {
                                                                          forIndexPath: cellForItemAtIndexPath) as? FlickrPhotoCell
         cell?.backgroundColor = UIColor.blackColor()
         
-        let urlString = HTTPNetworking.photoSource(searches[cellForItemAtIndexPath.row])
-        let photoURL = NSURL(string: urlString)
-        let reqest = NSURLRequest(URL:photoURL!)
-
-        NSURLConnection
-            .sendAsynchronousRequest(reqest,
-                                     queue:NSOperationQueue
-                                            .mainQueue()) { (res, data, err) in
-                                                if let image = UIImage(data:data!) {
-                                                    print(image)
-                                                    cell?.photoImage?.image = image
-                                                } else if let error = err {
-                                                    print(error)
-                                                }
-            
-                                            }
+//        let urlString = HTTPNetworking.photoSource(searches[cellForItemAtIndexPath.row])
+//        let photoURL = NSURL(string: urlString)
+//        let reqest = NSURLRequest(URL:photoURL!)
+//
+//        NSURLConnection
+//            .sendAsynchronousRequest(reqest,
+//                                     queue:NSOperationQueue
+//                                            .mainQueue()) { (res, data, err) in
+//                                                if let image = UIImage(data:data!) {
+//                                                    print(image)
+//                                                    cell?.photoImage?.image = image
+//                                                } else if let error = err {
+//                                                    print(error)
+//                                                }
+//            
+//                                            }
         
         /**
             let mainQueue = dispatch_get_main_queue()
@@ -131,7 +133,13 @@ extension PhotoViewController: UICollectionViewDelegateFlowLayout {
 extension PhotoViewController: PhotosViewDelegate {
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
-            
+        
+        let reaching = CheckReachability()
+        
+        if !reaching.checkReachability("https://google.com") {
+            print("Fail conneting")
+        }
+        
         // 検索ボタン クリック後の処理
         let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
         photosView!.photoCollectionView!.addSubview(activityIndicator)
@@ -165,6 +173,7 @@ extension PhotoViewController: PhotosViewDelegate {
             print("Fail to download")
             activityIndicator.removeFromSuperview()
         }
+        searchBar.resignFirstResponder()
         
     }
     
