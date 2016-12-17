@@ -39,3 +39,32 @@ class HTTPNetworking: AnyObject {
     }
     
 }
+
+extension HTTPNetworking {
+    
+    // APIデータをPhotoで渡すとURLが返す
+    class func photoSource(photo: Photo) -> String {
+        return photoSourceURL(photo.farm, id: photo.id, server: photo.server, secret: photo.secret)
+    }
+    
+    // (例) https://farm{farm-id}.staticflickr.com/{server-id}/{id}_{secret}_[mstzb].jpg
+    private class func photoSourceURL( farm: Int, id: Int, server: Int, secret: String) -> String {
+        let url = "https://farm\(String(farm))"
+                    + ".staticflickr.com/\(String(server))"
+                    + "/\(String(id))"
+                    + "_\(String(secret))_s.jpg"
+        return url
+    }
+    
+}
+
+
+
+
+
+
+
+
+
+
+

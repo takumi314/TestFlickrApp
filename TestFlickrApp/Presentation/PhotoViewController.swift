@@ -21,14 +21,13 @@ class PhotoViewController: UIViewController {
     let reuseIdentifier = "FlickrPhotoCell"
     let sectionInsets = UIEdgeInsets(top: 50.0, left: 20.0, bottom: 50.0, right: 20.0)
     let itemsPerRow: CGFloat = 5
+    let flickr = Flickr()
     
     var photosView: PhotosView?
     var delegate: PhotoViewControllerDelegate?
     var dataSource: UICollectionViewDataSource?
-    
     var searches = [Photo]()
     
-    let flickr = Flickr()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,16 +50,45 @@ extension PhotoViewController: UICollectionViewDataSource {
         return 1
     }
     
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 100
+    func collectionView(collectionView: UICollectionView,
+                        numberOfItemsInSection section: Int) -> Int {
+        return searches.count
     }
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath: NSIndexPath) -> UICollectionViewCell {
+    func collectionView(collectionView: UICollectionView,
+                        cellForItemAtIndexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier,
                                                                          forIndexPath: cellForItemAtIndexPath) as? FlickrPhotoCell
         cell?.backgroundColor = UIColor.blackColor()
         
-        // Configure the cell
+        let urlString = HTTPNetworking.photoSource(searches[cellForItemAtIndexPath.row])
+        let photoURL = NSURL(string: urlString)
+        let reqest = NSURLRequest(URL:photoURL!)
+
+        NSURLConnection
+            .sendAsynchronousRequest(reqest,
+                                     queue:NSOperationQueue
+                                            .mainQueue()) { (res, data, err) in
+                                                if let image = UIImage(data:data!) {
+                                                    print(image)
+                                                    cell?.photoImage?.image = image
+                                                } else if let error = err {
+                                                    print(error)
+                                                }
+            
+                                            }
+        
+        /**
+            let mainQueue = dispatch_get_main_queue()
+            let grobalQueue = dispatch_get_global_queue(QOS_CLASS_USER_INTERACTIVE, 0)
+            dispatch_sync(mainQueue, {
+                print("同期") // 画像取得
+                            dispatch_async(grobalQueue, {
+                    print("非同期")   // 画像表示
+                })
+            })
+        */
+ 
         return cell!
     }
     
@@ -102,6 +130,7 @@ extension PhotoViewController: PhotosViewDelegate {
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         photosView?.start()
+        
         // 検索ボタン クリック後の処理
         let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
         photosView!.addSubview(activityIndicator)
@@ -123,7 +152,7 @@ extension PhotoViewController: PhotosViewDelegate {
             }
         
             // レロード処理
-        
+            
         } else {
             print("Fail to download")
         }
