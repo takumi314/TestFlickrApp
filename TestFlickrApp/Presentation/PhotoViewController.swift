@@ -10,7 +10,7 @@ import UIKit
 
 protocol PhotoViewControllerDelegate {
     
-    func searchingForText(text: String)    //
+    func searchingForText(text: String)
     
 }
 
@@ -65,22 +65,27 @@ extension PhotoViewController: UICollectionViewDataSource {
                                                                          forIndexPath: cellForItemAtIndexPath) as? FlickrPhotoCell
         cell?.backgroundColor = UIColor.blackColor()
         
-//        let urlString = HTTPNetworking.photoSource(searches[cellForItemAtIndexPath.row])
-//        let photoURL = NSURL(string: urlString)
-//        let reqest = NSURLRequest(URL:photoURL!)
-//
-//        NSURLConnection
-//            .sendAsynchronousRequest(reqest,
-//                                     queue:NSOperationQueue
-//                                            .mainQueue()) { (res, data, err) in
-//                                                if let image = UIImage(data:data!) {
-//                                                    print(image)
-//                                                    cell?.photoImage?.image = image
-//                                                } else if let error = err {
-//                                                    print(error)
-//                                                }
-//            
-//                                            }
+        guard let urlString = HTTPNetworking.photoSource(searches[cellForItemAtIndexPath.row]) else {
+            return cell!
+        }
+        
+        let photoURL = NSURL(string: urlString)
+        let reqest = NSURLRequest(URL:photoURL!)
+
+        // 非同期通信で画像ダウンロード
+        NSURLConnection
+            .sendAsynchronousRequest(reqest,
+                                     queue:NSOperationQueue
+                                            .mainQueue()) { (res, data, err) in
+                                                
+                                                if let image = UIImage(data:data!) {
+                                                    print(image)
+                                                    cell?.photoImage?.image = image
+                                                } else if let error = err {
+                                                    print(error)
+                                                }
+            
+                                            }
         
         /**
             let mainQueue = dispatch_get_main_queue()
@@ -134,8 +139,11 @@ extension PhotoViewController: PhotosViewDelegate {
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         
-        let reaching = CheckReachability()
+        // キーボード非表示
+        searchBar.resignFirstResponder()
         
+        // 接続状態
+        let reaching = CheckReachability()
         if !reaching.checkReachability("https://google.com") {
             print("Fail conneting")
         }
@@ -164,7 +172,7 @@ extension PhotoViewController: PhotosViewDelegate {
                 }
             }
         
-            // レロード処理
+            // リロード処理
             photosView!.photoCollectionView?.reloadData()
 
             
@@ -173,7 +181,7 @@ extension PhotoViewController: PhotosViewDelegate {
             print("Fail to download")
             activityIndicator.removeFromSuperview()
         }
-        searchBar.resignFirstResponder()
+        
         
     }
     

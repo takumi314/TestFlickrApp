@@ -9,6 +9,7 @@
 import Alamofire
 
 struct FlickrArguments {
+    // https://api.flickr.com/services
     let endpoint = "https://api.flickr.com/services/rest/"
     let method = "method"
     let apiKey = "api_key"
@@ -43,7 +44,7 @@ class HTTPNetworking: AnyObject {
 extension HTTPNetworking {
     
     // APIデータをPhotoで渡すとURLが返す
-    class func photoSource(photo: Photo) -> String {
+    class func photoSource(photo: Photo) -> String? {
         return photoSourceURL(photo.farm, id: photo.id, server: photo.server, secret: photo.secret)
     }
     
@@ -53,6 +54,7 @@ extension HTTPNetworking {
                     + ".staticflickr.com/\(String(server))"
                     + "/\(String(id))"
                     + "_\(String(secret))_s.jpg"
+        
         return url
     }
     

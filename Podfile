@@ -6,6 +6,8 @@ target 'TestFlickrApp' do
   use_frameworks!
       pod 'Alamofire', '~> 3.0'
       pod 'SWXMLHash', '~> 2.0.0'
+      pod 'SwiftyJSON'
+
 
   # Pods for TestFlickrApp
 
