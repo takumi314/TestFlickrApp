@@ -37,8 +37,7 @@ extension PhotosView: ActivityIndicatorViewDelegate {
         
         activityIndicator.removeFromSuperview()
             
-        photoCollectionView?.reloadData()
-        
+                
     }
     
 }

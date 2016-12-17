@@ -23,7 +23,9 @@ class PhotoViewController: UIViewController {
     let itemsPerRow: CGFloat = 5
     let flickr = Flickr()
     
-    var photosView: PhotosView?
+    @IBOutlet weak var photosView: PhotosView?
+
+    
     var delegate: PhotoViewControllerDelegate?
     var dataSource: UICollectionViewDataSource?
     var searches = [Photo]()
@@ -129,11 +131,10 @@ extension PhotoViewController: UICollectionViewDelegateFlowLayout {
 extension PhotoViewController: PhotosViewDelegate {
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
-        photosView?.start()
-        
+            
         // 検索ボタン クリック後の処理
         let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
-        photosView!.addSubview(activityIndicator)
+        photosView!.photoCollectionView!.addSubview(activityIndicator)
         activityIndicator.frame = photosView!.bounds
         activityIndicator.startAnimating()
 
@@ -152,6 +153,8 @@ extension PhotoViewController: PhotosViewDelegate {
             }
         
             // レロード処理
+            photosView!.photoCollectionView?.reloadData()
+
             
         } else {
             print("Fail to download")

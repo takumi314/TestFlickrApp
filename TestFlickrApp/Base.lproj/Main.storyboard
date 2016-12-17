@@ -69,17 +69,20 @@
                             <constraint firstItem="bhg-OQ-UAd" firstAttribute="top" secondItem="vUJ-vc-Ukd" secondAttribute="bottom" id="3H7-vV-apg"/>
                             <constraint firstItem="vUJ-vc-Ukd" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="HyJ-i5-wZo"/>
                             <constraint firstAttribute="trailing" secondItem="vUJ-vc-Ukd" secondAttribute="trailing" id="OMD-0y-P5x"/>
-                            <constraint firstItem="vUJ-vc-Ukd" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="Rjw-dR-vyX"/>
                             <constraint firstAttribute="trailing" secondItem="bhg-OQ-UAd" secondAttribute="trailing" id="YNi-BZ-nM5"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="bhg-OQ-UAd" secondAttribute="bottom" id="cCt-U3-4jM"/>
+                            <constraint firstItem="vUJ-vc-Ukd" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="iV5-aw-BcH"/>
                             <constraint firstItem="bhg-OQ-UAd" firstAttribute="top" secondItem="vUJ-vc-Ukd" secondAttribute="bottom" id="jhY-U1-waS"/>
                             <constraint firstItem="bhg-OQ-UAd" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="ojU-Dg-kTL"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="bhg-OQ-UAd" secondAttribute="bottom" id="ykW-ez-wSg"/>
                         </constraints>
                         <connections>
                             <outlet property="flickrSearchBar" destination="vUJ-vc-Ukd" id="sE4-LL-Cgn"/>
                             <outlet property="photoCollectionView" destination="bhg-OQ-UAd" id="cnX-ri-CdI"/>
                         </connections>
                     </view>
+                    <connections>
+                        <outlet property="photosView" destination="8bC-Xf-vdC" id="MzK-ey-4Ch"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
