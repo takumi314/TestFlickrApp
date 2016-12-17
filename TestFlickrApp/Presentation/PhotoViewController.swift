@@ -59,19 +59,22 @@ extension PhotoViewController: UICollectionViewDataSource {
                                                                          forIndexPath: cellForItemAtIndexPath) as? FlickrPhotoCell
         cell?.backgroundColor = UIColor.blackColor()
         
-        let urlString = HTTPNetworking.photoSource(searches[cellForItemAtIndexPath])
-        let url = NSURL(string: urlString)
-        let req = NSURLRequest(URL:url!)
+        let urlString = HTTPNetworking.photoSource(searches[cellForItemAtIndexPath.row])
+        let photoURL = NSURL(string: urlString)
+        let reqest = NSURLRequest(URL:photoURL!)
 
-        NSURLConnection.sendAsynchronousRequest(req, queue:NSOperationQueue.mainQueue()) { (res, data, err) in
-            if let image = UIImage(data:data!) {
-                print(image)
-//                cell.photosView!.photoCollectionView.flickrCell.photoImage = image
-            } else if let error = err {
-                print(error)
-            }
+        NSURLConnection
+            .sendAsynchronousRequest(reqest,
+                                     queue:NSOperationQueue
+                                        .mainQueue()) { (res, data, err) in
+                                            if let image = UIImage(data:data!) {
+                                                print(image)
+                                                    cell?.photoImage?.image = image
+                                                } else if let error = err {
+                                                    print(error)
+                                                }
             
-        }
+                                            }
         
         /**
             let mainQueue = dispatch_get_main_queue()
@@ -84,7 +87,6 @@ extension PhotoViewController: UICollectionViewDataSource {
             })
         */
  
-        // Configure the cell
         return cell!
     }
     
