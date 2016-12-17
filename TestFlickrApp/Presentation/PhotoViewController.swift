@@ -150,6 +150,10 @@ extension PhotoViewController: PhotosViewDelegate {
             
             for page in pages {
                 print(" page : \(page)")
+                let photos = page.photos
+                for photo in photos {
+                    print("photo : \(photo)")
+                }
             }
         
             // レロード処理
@@ -157,7 +161,9 @@ extension PhotoViewController: PhotosViewDelegate {
 
             
         } else {
+            // アラート表示
             print("Fail to download")
+            activityIndicator.removeFromSuperview()
         }
         
     }

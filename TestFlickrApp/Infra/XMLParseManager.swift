@@ -87,6 +87,7 @@ class XMLParseManager {
                     tempPhoto.isfriend = Int(isfriend)!
                 }
                 photos.append(tempPhoto);
+                print(tempPhoto)
             }
             newPage.photos = photos;
             pages.append(newPage);
