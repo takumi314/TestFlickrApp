@@ -66,7 +66,11 @@ extension PhotoViewController: UICollectionViewDataSource {
     
 }
 
-extension PhotoViewController : UICollectionViewDelegateFlowLayout {
+extension PhotoViewController: UICollectionViewDelegate {
+
+}
+
+extension PhotoViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
@@ -92,6 +96,7 @@ extension PhotoViewController : UICollectionViewDelegateFlowLayout {
     }
 
 }
+
 
 extension PhotoViewController: PhotosViewDelegate {
     
